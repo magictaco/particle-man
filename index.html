@@ -1,0 +1,35 @@
+<html>
+   <head>
+      <title>ParticleMan!</title>
+      <link rel="stylesheet" type="text/css" href="css/main.css">
+   </head>
+   <body>
+      
+      <div id="main-canvas" class="game-canvas"></div>
+      
+      <fieldset id="controls">
+         <legend>Controls</legend>
+         
+         <button id="play-button">Play</button>
+         <button id="pause-button">Pause</button>         
+         
+         <label>Effect:</label>
+         <select id="particle-effect-select">
+            <option data-effect="rain" data-duration="2000">Rain</option>
+            <option data-effect="snow" data-duration="10000">Snow</option>
+            <option data-effect="leaf" data-duration="8000">Leaves</option>
+            <option data-effect="bug" data-duration="10000">Bug Swarm</option>
+            <option data-effect="text" data-char="Asymmetrik" data-duration="10000">Text</option>
+         </select>
+
+         <label>Wind:</label>
+         <button id="wind-button">Gust!</button>
+         
+         <label id="status"></label>
+      </fieldset>
+      
+      <!-- Import Javascript -->
+      <script src="js/lib/jquery-3.2.1.min.js"></script>
+      <script src="js/particleman.js"></script>
+   </body>
+</html>

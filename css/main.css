@@ -1,0 +1,100 @@
+body {
+   background-color: whitesmoke;
+   text-align: center;
+}
+
+.game-canvas {
+   border: 5px solid black;
+   box-shadow: 5px 5px 5px gray;
+   min-width: 400px;
+   min-height: 400px;
+   background: #1e5799;
+   background: linear-gradient(to bottom, #1e5799 0%,#7db9e8 100%);
+   overflow: hidden;
+}
+
+#main-canvas {
+   position: absolute;
+   top: 75px;
+   bottom: 25px;
+   left: 25px;
+   right: 25px;
+}
+
+#controls {
+   position: absolute;
+   top: 10px;
+   left: 25px;
+   right: 25px;
+   background-color: rgba(0,0,0,0.9);
+   border: none;
+   border-radius: 10px;
+   text-align: left;
+}
+#controls legend {
+   border: 1px solid black;
+   background-color: silver;
+   border-radius: 5px;   
+}
+#controls label {
+   color: silver;
+   margin-left: 50px;
+}
+#play-button, #pause-button {
+   width: 100px;
+}
+
+
+.game-canvas > span {
+   position: absolute;
+}
+
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+@keyframes sway {
+    0%   {transform:rotate(-30deg);}
+    50%  {transform:rotate(30deg);}
+    100% {transform:rotate(-30deg);}
+}
+
+.leaf {
+   background: url("../img/leaf.png") 0 0 / 75px 75px;
+   width: 75px;
+   height: 75;
+   animation-name: sway;
+   animation-duration: 2000ms;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+}
+.snow {
+   background: url("../img/flake.png") 0 0 / 50px 50px;
+   width: 50px;
+   height: 50px;
+   opacity: 0.5;
+   animation-name: spin;
+   animation-duration: 4000ms;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+}
+.rain {
+   background: url("../img/drop.png") 0 0 / 9px 15px;
+   width: 9px;
+   height: 15px;
+   opacity: 0.9;
+}
+.bug {
+   background: url("../img/bug.png") 0 0 / 20px 20px;
+   width: 20px;
+   height: 20px;
+}
+.text {
+   font-size: 200%;
+   color: silver;
+   text-transform: uppercase;
+   text-shadow: maroon 5px 5px 0;
+   font-weight: bolder;
+}
