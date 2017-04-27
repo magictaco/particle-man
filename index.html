@@ -15,11 +15,40 @@
          
          <label>Effect:</label>
          <select id="particle-effect-select">
-            <option data-effect="rain" data-duration="2000">Rain</option>
-            <option data-effect="snow" data-duration="10000">Snow</option>
-            <option data-effect="leaf" data-duration="8000">Leaves</option>
-            <option data-effect="bug" data-duration="10000">Bug Swarm</option>
-            <option data-effect="text" data-char="Asymmetrik" data-duration="10000">Text</option>
+            <option disabled="disabled">Standard Effects</option>
+            <option data-effect="snow" 
+                    data-duration="10000" 
+                    data-wind-resistance="0.1">
+               Snow
+            </option>
+            <option data-effect="rain" 
+                    data-duration="2000" 
+                    data-wind-resistance="0.9">
+               Rain
+            </option>
+            <option data-effect="leaf" 
+                    data-duration="8000" 
+                    data-wind-resistance="0.3">
+               Leaves
+            </option>
+            <option data-effect="bug" 
+                    data-duration="4000"
+                    data-wind-resistance="0.4">
+               Bug Swarm
+            </option>
+            <option disabled="disabled">Premium Effects</option>
+            <option data-effect="text" 
+                    data-text="Asymmetrik" 
+                    data-duration="10000"
+                    data-wind-resistance="0.5">
+               Text
+            </option>
+            <option data-effect="cat" 
+                    data-altclass="dog"
+                    data-duration="4000"
+                    data-wind-resistance="0.3">
+               Raining Cats & Dogs
+            </option>
          </select>
 
          <label>Wind:</label>

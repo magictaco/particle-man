@@ -1,4 +1,5 @@
-var TICK_FREQ_IN_MS = 500;
+var TICK_FREQ_IN_MS = 300;
+var WIND_GUST_STRENGTH_IN_PX = 600.0;
 
 var isRunning = false;
 
@@ -33,7 +34,10 @@ $( document ).ready(function() {
       $(".game-canvas span").each(function() {
          var currLeft = $(this).css("left");
          var newLeft = currLeft.substring(0, currLeft.indexOf("px"));
-         newLeft = (parseFloat(newLeft) + 100.0) + "px"; 
+         // Scale the wind strength based on which effect is selected and add 
+         // a little randomn jitter to make a nice effect.
+         var windDist = WIND_GUST_STRENGTH_IN_PX * (1.0 - getEffectOptions().windresistance) * (Math.random() * 0.8);
+         newLeft = (parseFloat(newLeft) + windDist) + "px"; 
          $(this).animate({
             left: newLeft
          }, { duration: 500, queue: false });
@@ -44,24 +48,46 @@ $( document ).ready(function() {
    
 });
 
+getEffectOptions = function() {
+   var effect = $("#particle-effect-select option:selected");
+   var fxOpts = new Object();
+   // Required options.
+   fxOpts.effect = effect.data("effect");
+   fxOpts.duration = effect.data("duration");
+   fxOpts.windresistance = effect.data("wind-resistance");
+   // Optional options.
+   fxOpts.text = effect.data("text");
+   fxOpts.altclass = effect.data("altclass");
+   return fxOpts;
+}; //fnend - getEffectOptions
+
 performTick = function() {
    if (isRunning) {
-      var effect = $("#particle-effect-select option:selected");
       
-      var newParticleHtml = "<span class=\"" + effect.data("effect") + "\">";
-      if (effect.data("char"))
-         newParticleHtml += effect.data("char");
+      var fxOpts = getEffectOptions();
+      
+      // Determine the effect class.
+      var effectClass = fxOpts.effect;
+      if (fxOpts.altclass && Math.random()>=0.5)
+         effectClass = fxOpts.altclass;
+      
+      // Build the HTML for the new particle element.
+      var newParticleHtml = "<span class=\"" + effectClass + "\">";
+      if (fxOpts.text)
+         newParticleHtml += fxOpts.text;
       newParticleHtml += "</span>";
       
+      // Add the new particle DOM element to the canvas.
       var newParticle = $(newParticleHtml).appendTo(".game-canvas");
+      // Position it at a random horizontal location.
       newParticle.css("left", (Math.random() * 100) + "%")
 
-      newParticle.css("top", "-10%");
+      newParticle.css("top", "-20%");
       newParticle.animate({
-         top: "110%"
-      }, parseInt(effect.data("duration")), "swing", function() {
+         top: "120%"
+      }, parseInt(fxOpts.duration), "swing", function() {
          newParticle.remove();
-      });      
+      });
       
       $("#status").text("Particle Count: " + $(".game-canvas span").length);
    } //endif - check for isRunning
