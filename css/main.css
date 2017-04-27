@@ -5,12 +5,16 @@ body {
 
 .game-canvas {
    border: 5px solid black;
+   border-bottom: 35px solid green;
    box-shadow: 5px 5px 5px gray;
    min-width: 400px;
    min-height: 400px;
    background: #1e5799;
    background: linear-gradient(to bottom, #1e5799 0%,#7db9e8 100%);
    overflow: hidden;
+}
+.game-canvas > span {
+   position: absolute;
 }
 
 #main-canvas {
@@ -20,6 +24,42 @@ body {
    left: 25px;
    right: 25px;
 }
+@keyframes avatarwalk {
+   0%   {
+      left: 10%;
+      transform: scaleX(-1);
+   }
+   50%  {
+      left: 80%;
+      transform: scaleX(-1);
+   }
+   51%  {
+      left: 80%;
+      transform: scaleX(1);
+   }
+   99% {
+      left: 10%;
+      transform: scaleX(1);
+   }
+   100% {
+      left: 10%;
+      transform: scaleX(-1);
+   }
+}
+#avatar {
+   position: absolute;
+   z-index: 5;
+   bottom: 0;
+   background: url("../img/person.png") 0 0 / 133px 273px ;
+   width: 133px;
+   height: 273px;  
+   animation-name: avatarwalk;
+   animation-duration: 10000ms;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+}
+
+/* Controls ******************************************************************/
 
 #controls {
    position: absolute;
@@ -44,11 +84,7 @@ body {
    width: 100px;
 }
 
-
-.game-canvas > span {
-   position: absolute;
-}
-
+/* Effect Animations *********************************************************/
 
 @keyframes spinanddrift {
     from {
@@ -72,6 +108,8 @@ body {
     50%  {transform:rotate(30deg);}
     100% {transform:rotate(-30deg);}
 }
+
+/* Effects *******************************************************************/
 
 .leaf {
    background: url("../img/leaf.png") 0 0 / 75px 75px;

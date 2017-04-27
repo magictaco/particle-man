@@ -10,7 +10,7 @@ $( document ).ready(function() {
    
    // Initialize the particle-effect-select.
    $("#particle-effect-select").change(function() {
-      $(".game-canvas").html("");
+      $(".game-canvas span").remove();
    });
    
    $("#pause-button").hide().click(function() {
@@ -18,11 +18,6 @@ $( document ).ready(function() {
       $(".game-canvas span").stop().remove();
       $("#pause-button, #play-button").toggle();
       $("#status").text("");
-   });
-   
-   $("#play-button").click(function() {
-      isRunning = true;
-      $("#pause-button, #play-button").toggle();
    });
    
    $("#play-button").click(function() {
@@ -71,8 +66,12 @@ performTick = function() {
       if (fxOpts.altclass && Math.random()>=0.5)
          effectClass = fxOpts.altclass;
       
+      // Assign a z-index between 0 and 9.
+      var zIndex = parseInt(Math.round(Math.random() * 10));
+      
+      
       // Build the HTML for the new particle element.
-      var newParticleHtml = "<span class=\"" + effectClass + "\">";
+      var newParticleHtml = "<span class=\"" + effectClass + "\" style=\"z-index:" + zIndex + "\">";
       if (fxOpts.text)
          newParticleHtml += fxOpts.text;
       newParticleHtml += "</span>";
